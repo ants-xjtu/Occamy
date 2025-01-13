@@ -1,0 +1,9 @@
+export DC_PATH=/path/to/your/design/compiler
+export DESIGN_DIR=/path/to/your/design/directory
+export REPORT_DIR=$DESIGN_DIR/reports
+export lib_path="/path/to/your/lib/"
+export target_library="$lib_path/gscl45nm.db"
+export link_library="$lib_path/gscl45nm.db"
+
+
+
