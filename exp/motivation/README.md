@@ -43,7 +43,7 @@
 
 - Using network namespaces, we isolated two ports on each NIC to emulate two separate NICs and hosts.
 
-[Here]() is how to use the HUAWEI switch.
+[Here](./switch-instructions.md) is how to use the HUAWEI switch.
 
 - Using [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to generate query burst traffic.
 
