@@ -13,7 +13,9 @@
 #include "vector"
 #include "ns3/flow-monitor-helper.h"
 #include <cmath>
+#include <filesystem>
 
+namespace fs = std::filesystem;
 // # define PACKET_SIZE 1400
 # define PACKET_SIZE 1448     //pkt is 1.5K
 # define GIGA 1000000000
@@ -586,8 +588,25 @@ main (int argc, char *argv[])
     Simulator::Stop (Seconds (END_TIME+10));
     Simulator::Run ();
 
-    std::string resultFloder = "../../exp/sigcomm/100g_queryload/";
-    std::string xmlName = resultFloder + keyName + ".xml";
+    std::string resultFolder = "../../exp/ns-3/100g_queryload/";
+    if (!fs::exists(resultFolder)) {
+        std::cout << "Folder does not exist. Creating: " << resultFolder << std::endl;
+
+        try {
+            if (fs::create_directories(resultFolder)) {
+                std::cout << "Folder created successfully." << std::endl;
+            } else {
+                std::cerr << "Failed to create folder." << std::endl;
+                return 1; 
+            }
+        } catch (const std::exception &e) {
+            std::cerr << "Error creating folder: " << e.what() << std::endl;
+            return 1; 
+        }
+    } else {
+        std::cout << "Folder already exists: " << resultFolder << std::endl;
+    }
+    std::string xmlName = resultFolder + keyName + ".xml";
     flowMonitor->SerializeToXmlFile(xmlName, true, true);
     std::cout<<"finish"<<std::endl;
     Simulator::Destroy ();
