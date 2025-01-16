@@ -31,7 +31,7 @@ host_scheduling=0
 multi_queue=1
 query_queue_num=1
 background_queue_num=1
-exp_query_size=1.7
+exp_query_size=1.5
 
 exp_bak_cong="CUBIC"
 
