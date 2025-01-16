@@ -40,7 +40,7 @@ exp_one_time() {
   local query_size=$2
   local alpha=$3
   local t=$4
-  kjkjjchange-query_size $base_query_size $query_size
+  change-query_size $base_query_size $query_size
   set-init-cwnd $exp_init_cwnd
   while true; do
     kill_client

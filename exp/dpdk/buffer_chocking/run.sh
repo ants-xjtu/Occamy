@@ -41,7 +41,6 @@ exp_one_time() {
   local alpha=$3
   local t=$4
   local bg_flg=$5
-  local str="_b"
   local s="$method$alpha"
   change-query_size $base_query_size $query_size
   set-init-cwnd $exp_init_cwnd
@@ -70,7 +69,7 @@ exp_one_time() {
   sleep 10
   finish-judge-one-port
   sleep 5
-  download-txt-one-port $s$str $query_size $bg_flg
+  download-txt-one-port $s $query_size $bg_flg
   local end_time=$(date +%s)
   local total_time=$(($end_time - $start_time))
   local minutes=$(($total_time / 60))

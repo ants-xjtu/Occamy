@@ -170,7 +170,11 @@ configure() {
     query_info+="req_size_dist conf/INCAST_CDF.txt\n"
     bg_info+="req_size_dist conf/DCTCP_CDF.txt\n"
 
-    bg_info+="$(calculate_dscp "$queue_num_2" "$queue_num_1")\n"
+    if (($multi_queue == 1)); then
+      bg_info+="$(calculate_dscp "$queue_num_2" "$queue_num_1")\n"
+    else
+      bg_info+="$(calculate_dscp "$queue_num_1")\n"
+    fi
     query_info+="$(calculate_dscp "$queue_num_1")\n"
 
     bg_info+="rate 0Mbps 100"
