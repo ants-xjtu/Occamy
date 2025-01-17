@@ -6,8 +6,15 @@ This repo contains the source code to reproduce results in the EuroSys'25 paper.
 
 
 ## Code Structure
-- `src`: The source code of prototypes, including DPDK-based software prototype, P4-based hardware prototype, and verilog implementation of core components.
-- `exp`: The scripts to reproduce experiment results.
+- `src`: The source code of prototypes, including
+    - `src/dpdk`: DPDK-based software prototype
+    - `src/p4`: P4-based hardware prototype
+    - `src/verilog`: Verilog implementation of core components
+- `exp`: The scripts to reproduce experiment results, including
+    - `exp/motivation`: DT's anomalous behavior on commodity switching chips
+    - `exp/dpdk`: DPDK-based experiments
+    - `exp/p4`: P4-based experiments
+    - `exp/verilog`: Verilog-based experiments
 
 The ns-3 code has been relocated to a separate [repository](https://github.com/ants-xjtu/Occamy-Simulation)
 due to its large overall size.
