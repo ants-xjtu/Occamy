@@ -16,11 +16,11 @@ due to its large overall size.
 The details for reproducing the experiment results are provided in a separate README file.
 
 - Motivation
-    - [DT's anomalous behavior on commodity switching chips](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/motivation)
+    - [DT's anomalous behavior on commodity switching chips](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/motivation)
     - DT's buffer/memory bandwidth utilization
-- [P4-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/p4)
-- [DPDK-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/dpdk)
-- [Verilog-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/verilog)
+- [P4-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/p4)
+- [DPDK-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/dpdk)
+- [Verilog-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/verilog)
 - [Simulations](https://github.com/ants-xjtu/Occamy-Simulation)
 
 ## Reference
