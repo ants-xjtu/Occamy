@@ -14,22 +14,24 @@ puts "REPORT_DIR: $REPORT_DIR"
 puts "target_library: $target_library"
 puts "link_library: $link_library"
 
-# Read all Verilog files from the DESIGN_DIR directory
+# Read all Verilog files
 set verilog_files [glob -nocomplain $DESIGN_DIR/*.v]
 foreach file $verilog_files {
-    analyze -f verilog $file
+    puts "Reading file: $file"
+    read_file -format verilog $file
 }
 
-elaborate $TOP_MODULE
+# Set the top-level design
+current_design $TOP_MODULE
 
-link
+create_clock -period 10 -name clk [get_ports clk]
+
+set_max_area 0
 
 # Compile the design
-compile_ultra
+compile -map_effort high -area_effort high
 
 # Generate Timing Report
-# -max_paths 10: Max number of paths in the report
-# Output to file
 report_timing  > $REPORT_DIR/timing_report_$TOP_MODULE.txt
 
 # Generate Area Report
@@ -38,7 +40,7 @@ report_area
 report_area > $REPORT_DIR/area_report_$TOP_MODULE.txt
 
 # Optionally, you can generate power report
-# report_power > $REPORT_DIR/power_report.txt
+report_power > $REPORT_DIR/power_report_$TOP_MODULE.txt
 
 # Exit Design Compiler
 exit
