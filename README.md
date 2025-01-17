@@ -9,6 +9,20 @@ This repo contains the source code to reproduce results in the EuroSys'25 paper.
 - `src`: The source code of prototypes, including DPDK-based software prototype, P4-based hardware prototype, and verilog implementation of core components.
 - `exp`: The scripts to reproduce experiment results.
 
+The ns-3 code has been relocated to a separate [repository](https://github.com/ants-xjtu/Occamy-Simulation)
+due to its large overall size.
+
+## Reproducing Results
+The details for reproducing the experiment results are provided in a separate README file.
+
+- Motivation
+    - [DT's anomalous behavior on commodity switching chips](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/motivation)
+    - DT's buffer/memory bandwidth utilization
+- [P4-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/p4)
+- [DPDK-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/dpdk)
+- [Verilog-based experiments](https://github.com/ants-xjtu/Occamy/blob/eurosys25-artifacts/exp/verilog)
+- [Simulations](https://github.com/ants-xjtu/Occamy-Simulation)
+
 ## Reference
 The design, implementation, and evaluation of Occamy are detailed in the following paper:
 ```bib
