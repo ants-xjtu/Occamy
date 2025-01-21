@@ -1,0 +1,56 @@
+#!/bin/bash
+# ssh root@IP
+SERVER_LIST=(
+  "192.168.1.2"
+  "192.168.1.3"
+  "192.168.1.4"
+  "192.168.1.5"
+  "192.168.1.6"
+  "192.168.1.7"
+  "192.168.1.8"
+  "192.168.1.9"
+)
+
+SWITCH_IP=(
+  127.0.0.1
+)
+
+dpdk_switch_path="/path/to/dpdk-switch/"
+traffic_path="/path/to/TrafficGenerator/" #example: "/home/xxx/TrafficGenerator/"
+
+SERVER_EXP_IPS=(
+  "192.168.10.2"
+  "192.168.10.3"
+  "192.168.10.4"
+  "192.168.10.5"
+  "192.168.10.6"
+  "192.168.10.7"
+  "192.168.10.8"
+  "192.168.10.9"
+)
+
+# MAC addresses of all SERVER_EXP_IPS
+SERVER_MACS=(
+  "00:00:00:00:00:00"
+  "00:00:00:00:00:01"
+  "00:00:00:00:00:02"
+  "00:00:00:00:00:03"
+  "00:00:00:00:00:04"
+  "00:00:00:00:00:05"
+  "00:00:00:00:00:06"
+  "00:00:00:00:00:07"
+)
+
+# NIC names of all SERVER_EXP_IPS
+SERVER_NICS=(
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+  "enp4s0f0"
+)
+
+ONE_CLIENT_IP="192.168.1.2"
