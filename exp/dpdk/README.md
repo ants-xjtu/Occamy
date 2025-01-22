@@ -4,7 +4,7 @@
 
 This document describes the dpdk based software prototype experiment in §6.1, §6.2, §6.3. 
 
-We provide detailed parameters and demo scripts to implement this experiment.
+We provide detailed parameters and scripts to implement this experiment.
 
 ---
 
@@ -124,6 +124,15 @@ exp_init_cwnd=83
 
 ```
 
+--- 
+
+## Requirements
+
+1. A host with dpdk-switch, how to run dpdk-switch is explained in detail in this [document](../../src/dpdk/README.md).
+
+2. 8 hosts witch [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) in the same path.
+
+3. The host with dpdk swtich can SSH login to 8 hosts as the root user.
 
 ## Reproduce Figure 10.
 
