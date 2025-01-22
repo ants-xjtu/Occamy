@@ -44,7 +44,7 @@ We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to ge
 - **ECN Threshold**: 65 packets (as suggested by [5]).
 
 
-## A demo
+## Current experimental configuration
 
 ### Host IP Configuration
 1. **Host Machines**:
@@ -124,19 +124,93 @@ exp_init_cwnd=83
 
 ```
 
-- experiment steps(example):
 
-```sh 
-# 1. 
-mv general/config.conf.example general/config.conf
+## Reproduce Figure 10.
 
-# 2. Modify the config file content
-
-# 3. Modidy the scripts parameters
-
-# 4. 
-cd absorb_bursts; ./run.sh
-cd xxx; ./run.sh
+### run the scripts
+```sh
+cd absorb_bursts; 
+sudo su; 
+./run.sh
 ```
+
+### plot 
+
+```sh
+mkdir -p figure
+python3 get_result.py
+```
+
+the figure will appear under `figure/`
+
+Figure10(a)(b) is in `figure/query.png`
+
+Figure10(c) is `figure/background.png`
+
+Figure10(d) is `figure/background_small.png`
+
+
+## Reproduce Figure 11.
+
+### run the scripts
+```sh
+cd performance_isolation; 
+sudo su; 
+./run.sh
+```
+
+### plot 
+
+```sh
+mkdir -p figure
+python3 get_result.py
+```
+the figure will appear under `figure/`
+
+Figure11(a)(b) is in `figure/query.png`
+
+
+
+## Reproduce Figure 11.
+
+### run the scripts
+```sh
+cd buffer_chocking; 
+sudo su; 
+./run.sh
+```
+
+### plot 
+
+```sh
+mkdir -p figure
+python3 get_result.py
+```
+the figure will appear under `figure/`
+
+Figure12(a)(b) is in `figure/query.png`
+
+
+## Reproduce Figure 13.
+
+### run the scripts
+```sh
+cd alpha; 
+sudo su; 
+./run.sh
+```
+
+### plot 
+
+```sh
+mkdir -p figure
+python3 get_result.py
+```
+the figure will appear under `figure/`
+
+Figure13(a) is `figure/query_dt.png`
+
+Figure14(a) is `figure/query_occamy.png`
+
 
 
