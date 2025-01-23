@@ -35,7 +35,7 @@
 - we use the same experimental settings as before, except that two types of traffic are congested at different ports, thereby eliminating the impact of buffer choking.
 
 
-## A demo (Our configuration)
+## Our configuration
 
 - We build a testbed comprising 4 hosts connected to a Huawei CE6865 switch. 
 
@@ -50,41 +50,61 @@
 - Using [iperf3](https://github.com/esnet/iperf.git) to generate background traffic.
 
 
-First, 2 senders need to send background traffic to the receiver. 
+## Reproduce Figure 5.
 
-Taking Huawei switches as an example, background traffic is divided into seven different queues based on the dscp value.
-
-```sh
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6666 -t 0 -S 32 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6667 -t 0 -S 64 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6668 -t 0 -S 96 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6669 -t 0 -S 128 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6610 -t 0 -S 160 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6611 -t 0 -S 192 
-ip netns exec ns2 iperf3 -C dctcp -c 192.168.xx.xx -p 6612 -t 0 -S 224 
-```
-
-Second, use TrafficGenerator to generate incast traffic and record its qct.
+### 1. configure the experiment
 
 ```sh 
-### IN sender 
-cd TrafficGenerator; ./bin/server -p 6001 -d;
-
-### IN receiver
-cd TrafficGenerator; ./bin/client -c conf/xxx -b 1000 -t 120
+cd motivation
+mv config.conf.example config.conf
+# change the config.conf file.
 ```
 
-> A sample TrafficGenerator configuration file
-> ```sh 
->server 192.168.40.31 6001 1
->server 192.168.40.41 6001 1
->server 192.168.40.50 6001 1
->server 192.168.40.21 6001 1
->server 192.168.40.51 6001 1
->req_size_dist /home/ygli/TrafficGenerator/conf/INCAST_CDF.txt
->dscp 0 100
->rate 0Mbps 100
->fanout 40 100 
-> ```
+### 2. configure the HUAWEI switch using the [switch-instructions](switch-instructions.md).
 
+a. Turn on the ecn flag. 
 
+b. Enable multiple queues, and distinguish each queue based on the dscp value. 
+
+c. Set the alpha of queue 0 to 8 and the alpha of other queues to 1.
+
+### 3. run the scripts.
+
+a. **The buffer chocking experiment**
+
+```sh
+cd buffer-chocking
+sudo su 
+./run.sh 
+```
+
+b. **The performance isolation experiment**
+
+```sh
+cd buffer-chocking
+sudo su 
+./run.sh 
+```
+
+c. **The experiment with no background(for comparison)**
+```sh
+cd buffer-chocking
+sudo su 
+./run.sh 
+```
+
+### 4. plot the result
+
+```sh
+cd buffer-chocking
+python3 get_result.py
+```
+
+The Figure 5(a) is `buffer-chocking/figure/query.png`.
+
+```sh
+cd performance_isolation
+python3 get_result.py
+```
+
+The Figure 5(b) is `performance_isolation/figure/query.png`.
