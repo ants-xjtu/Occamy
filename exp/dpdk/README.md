@@ -81,11 +81,11 @@ We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to ge
 
 ```
 .
-├── absorb_bursts         # Scripts for figure10.
-├── alpha                 # Scripts for figure13.
-├── buffer_chocking       # Scripts for figure12.
+├── absorb_bursts         # Scripts for Figure 12.
+├── alpha                 # Scripts for Figure 15.
+├── buffer_chocking       # Scripts for Figure 14.
 ├── general               # general scripts for all experiments.
-└── performance_isolation # Scripts for figure11.
+└── performance_isolation # Scripts for Figure 13.
 ```
 
 ### Parameters in scripts
@@ -134,7 +134,7 @@ exp_init_cwnd=83
 
 3. The host with dpdk swtich can SSH login to 8 hosts as the root user.
 
-## Reproduce Figure 10.
+## Reproduce Figure 12.
 
 ### run the scripts
 ```sh
@@ -150,16 +150,16 @@ mkdir -p figure
 python3 get_result.py
 ```
 
-the figure will appear under `figure/`
+The figure will appear under `figure/`
 
-Figure10(a)(b) is in `figure/query.png`
+Figure 12(a)(b) is in `figure/query.png`
 
-Figure10(c) is `figure/background.png`
+Figure 12(c) is `figure/background.png`
 
-Figure10(d) is `figure/background_small.png`
+Figure 12(d) is `figure/background_small.png`
 
 
-## Reproduce Figure 11.
+## Reproduce Figure 13.
 
 ### run the scripts
 ```sh
@@ -176,11 +176,11 @@ python3 get_result.py
 ```
 the figure will appear under `figure/`
 
-Figure11(a)(b) is in `figure/query.png`
+Figure 13(a)(b) is in `figure/query.png`
 
 
 
-## Reproduce Figure 11.
+## Reproduce Figure 14.
 
 ### run the scripts
 ```sh
@@ -197,10 +197,10 @@ python3 get_result.py
 ```
 the figure will appear under `figure/`
 
-Figure12(a)(b) is in `figure/query.png`
+Figure 14(a)(b) is in `figure/query.png`
 
 
-## Reproduce Figure 13.
+## Reproduce Figure 15.
 
 ### run the scripts
 ```sh
@@ -217,9 +217,9 @@ python3 get_result.py
 ```
 the figure will appear under `figure/`
 
-Figure13(a) is `figure/query_dt.png`
+Figure 15(a) is `figure/query_dt.png`
 
-Figure14(a) is `figure/query_occamy.png`
+Figure 15(b) is `figure/query_occamy.png`
 
 
 
