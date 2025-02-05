@@ -62,7 +62,7 @@ mv config.conf.example config.conf
 
 ### Configure the Huawei switch following [switch-instructions](switch-instructions.md)
 
-- Turn on ECN
+- Turn on ECN, set the ecn threshold to 750KB.
 - Enable multiple queues, and distinguish each queue based on the DSCP value
 - Set the alpha of queue 0 to 8 and the alpha of other queues to 1
 
