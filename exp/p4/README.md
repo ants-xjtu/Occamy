@@ -19,6 +19,28 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 
 ## Aritfact Evaluation README
 
+### Prerequisites
+
+- Edgecore Wedge100BF-32X switch
+    - P4 Studio SDE (9.9.0)
+
+- Sender
+    - dualport 100GbE NIC
+    - Ubuntu 24.04.1 LTS
+    - DPDK 25.03.0-rc0
+    - pktgen-dpdk 24.10.3
+
+- Receiver 1
+    - 10GbE NIC
+    - Ubuntu 24.04.1 LTS
+    - DPDK 25.03.0-rc0
+    - pktgen-dpdk 24.10.3
+
+- Receiver 2
+    - 10GbE NIC
+    - Ubuntu 24.04.1 LTS
+    - Scapy
+
 ### Environment Setup
 
 - An Edgecore Wedge100BF-32X switch (with Tofino programmable switch ASIC).
