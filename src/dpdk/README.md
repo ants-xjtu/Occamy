@@ -16,6 +16,10 @@ This is a l2 switch based on DPDK.
 
 # Requirements
 
+* OS: Ubuntu22.04
+
+* Hardware: 256G memory 16 cores or more.
+
 * [DPDK](http://dpdk.org/) == 23.07
 
 # Settings
