@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the dpdk based software prototype experiment in §6.1, §6.2, §6.3. 
+This document describes the experiments on dpdk-based software prototype in §6.2 and §6.3.
 
 We provide detailed parameters and scripts to implement this experiment.
 
