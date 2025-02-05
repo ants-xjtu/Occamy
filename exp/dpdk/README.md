@@ -2,9 +2,9 @@
 
 ## Overview
 
-This document describes the dpdk based software prototype experiment in §6.1, §6.2, §6.3. 
+This document describes the experiments on dpdk-based software prototype in §6.2 and §6.3.
 
-We provide detailed parameters and demo scripts to implement this experiment.
+We provide detailed parameters and scripts to implement this experiment.
 
 ---
 
@@ -32,9 +32,9 @@ We provide detailed parameters and demo scripts to implement this experiment.
 
 We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to generate 2 kinds of traffic.
 
-- query traffic.
+- Query traffic.
 
-- background traffic.
+- Background traffic.
 
 ---
 
@@ -44,7 +44,7 @@ We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to ge
 - **ECN Threshold**: 65 packets (as suggested by [5]).
 
 
-## A demo
+## Current experimental configuration
 
 ### Host IP Configuration
 1. **Host Machines**:
@@ -81,11 +81,11 @@ We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to ge
 
 ```
 .
-├── absorb_bursts         # Scripts for figure10.
-├── alpha                 # Scripts for figure13.
-├── buffer_chocking       # Scripts for figure12.
+├── absorb_bursts         # Scripts for Figure 12.
+├── alpha                 # Scripts for Figure 15.
+├── buffer_chocking       # Scripts for Figure 14.
 ├── general               # general scripts for all experiments.
-└── performance_isolation # Scripts for figure11.
+└── performance_isolation # Scripts for Figure 13.
 ```
 
 ### Parameters in scripts
@@ -124,19 +124,93 @@ exp_init_cwnd=83
 
 ```
 
-- experiment steps(example):
+--- 
 
-```sh 
-# 1. 
-mv general/config.conf.example general/config.conf
+## Requirements
 
-# 2. Modify the config file content
+1. A host with dpdk-switch, how to run dpdk-switch is explained in detail in this [document](../../src/dpdk/README.md).
 
-# 3. Modidy the scripts parameters
+2. 8 hosts witch [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) in the same path.
 
-# 4. 
-cd absorb_bursts; ./run.sh
-cd xxx; ./run.sh
+3. The host with dpdk swtich can SSH login to 8 hosts as the root user.
+
+## Reproduce Figure 12
+
+### Run the scripts
+```bash
+cd absorb_bursts
+sudo su
+./run.sh
 ```
 
+### Draw the figure
 
+```bash
+mkdir -p figure
+python3 get_result.py
+```
+
+The figures will appear under `figure/`
+
+- Figure 12(a)(b): `figure/query.png`
+- Figure 12(c): `figure/background.png`
+- Figure 12(d): `figure/background_small.png`
+
+
+## Reproduce Figure 13
+
+### Run the scripts
+```bash
+cd performance_isolation
+sudo su
+./run.sh
+```
+
+### Draw the figure
+
+```bash
+mkdir -p figure
+python3 get_result.py
+```
+The figures will appear under `figure/`
+- Figure 13(a)(b): `figure/query.png`
+
+
+
+## Reproduce Figure 14
+
+### Run the scripts
+```bash
+cd buffer_chocking
+sudo su
+./run.sh
+```
+
+### Draw the figure
+
+```bash
+mkdir -p figure
+python3 get_result.py
+```
+The figures will appear under `figure/`
+- Figure 14(a)(b): `figure/query.png`
+
+
+## Reproduce Figure 15
+
+### Run the scripts
+```bash
+cd alpha
+sudo su
+./run.sh
+```
+
+### Draw the figure
+
+```bash
+mkdir -p figure
+python3 get_result.py
+```
+The figures will appear under `figure/`
+- Figure 15(a): `figure/query_dt.png`
+- Figure 15(b): `figure/query_occamy.png`

@@ -24,7 +24,7 @@ The details for reproducing the experiment results are provided in a separate RE
 
 - Motivation
     - [DT's anomalous behavior on commodity switching chips](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/motivation)
-    - DT's buffer/memory bandwidth utilization
+    - [DT's buffer/memory bandwidth utilization](https://github.com/ants-xjtu/Occamy-Simulation)
 - [P4-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/p4)
 - [DPDK-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/dpdk)
 - [Verilog-based experiments](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts/exp/verilog)
