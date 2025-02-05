@@ -52,7 +52,7 @@ def draw(df, plt_params, method_array, x_array, x_implication):
 
 def main():
     global data
-    df = deal_folder("result/", method_array, x_array)
+    df = deal_folder(file_dir, method_array, x_array)
     draw(df, plt_params, method_array, x_array, x_implication)    
 
 if __name__ == '__main__':
