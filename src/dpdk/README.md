@@ -18,7 +18,11 @@ This is a l2 switch based on DPDK.
 
 * OS: Ubuntu22.04
 
-* Hardware: 256G memory 16 cores or more.
+* Hardware: 
+
+  - 256G memory 
+  - 32 cores or more.
+  - 2x 4-port Intel X710 10GBE NIC.
 
 * [DPDK](http://dpdk.org/) == 23.07
 
