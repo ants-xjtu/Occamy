@@ -4,16 +4,24 @@ This directory automates the synthesis of Verilog designs using Synopsys Design 
 
 ## Files Overview
 
+
 - **`config.conf`**: Configuration file containing paths for the Design Compiler, Verilog design files, library files, and output report directories.
   
 - **`run.sh`**: Shell script that loads the configuration, starts the Design Compiler, and triggers the synthesis process. It accepts a top-level module name as a command-line argument.
 
 - **`main.tcl`**: TCL script executed by Design Compiler.
 
+**These three files are the running scripts of asic cost, FPGA cost only needs graphical operation.**
+
 ## Requirements
 
-- **Synopsys Design Compiler** 2016
+- **Synopsys Design Compiler** 2016  
+
+  - OS for Design Compiler: Ubuntu22.04
+
 - Vivado 2024
+
+  - OS for vivado: Windows11
  
 ## Reproduce Table 1.
 
@@ -36,7 +44,47 @@ This directory automates the synthesis of Verilog designs using Synopsys Design 
 
 ### FPGA Cost
 
-In Vivado2024, set the FPGA card to [U50](https://www.amd.com/en/products/accelerators/alveo/u50/a-u50-p00g-pq-g.html), run `implementation`.
 
-Run `Report Utilization`.
+- Step 1: Launch Vivado. Open **Vivado 2024** from your Windows desktop.
 
+- Step 2: Create or Open a Project. Set the FPGA card to [U50](https://www.amd.com/en/products/accelerators/alveo/u50/a-u50-p00g-pq-g.html).
+
+    - select "Create New Project":
+    - Enter the Project Name and select the Project Location.
+    - Choose RTL Project.
+    - Optionally, check Do not specify sources at this time if you plan to add them later.
+    - Click Next and specify the Part or Board to [U50](https://www.amd.com/en/products/accelerators/alveo/u50/a-u50-p00g-pq-g.html).
+
+- Step 3: Import Files (Sources) 
+
+    1. **Add Source Files**:
+        - Navigate to the **"Project Manager"** window (on the left side of the screen).
+        - Right-click on **Sources** and select **Add Sources**.
+        - Select the **type of source** you want to add (e.g., Verilog, VHDL, or XDC for constraints).
+        - Browse to the location of your source files and select them.
+        - Click **Finish**.
+
+    2. **Add Constraints** (Optional, but often necessary):
+        - Right-click on **Constraints** in the **Project Manager** and select **Add Constraints**.
+        - Browse and select any `.xdc` or other constraint files (for pin assignments, timing constraints, etc.).
+        - Click **Finish**.
+
+- Step 4: Set a module as the top module. Under Sources, right-click on the module you want to set as the top and select Set as Top.
+
+  In this experiment, top module should be `headdrop_scheduler`, `fixed_arb` or `headdrop_drop`.
+
+- Step 5: Under the **Flow Navigator**, click **Run Synthesis**. 
+
+- Step 6: Run Implementation.
+
+- Step 7: Generate Utilization Report.
+
+- Step 8: View and Save the Utilization Report.
+
+    1. Once implementation is complete, go to Flow Navigator and click Open Implemented Design.
+    2. Under the Reports section, click Utilization to generate the utilization report.
+        - The report will display information about resource usage, including LUTs, flip-flops, block RAMs, DSPs, and other FPGA-specific resources.
+        - You can also access Reports > Utilization from the main Vivado menu if needed.
+
+
+Set top module to `headdrop_scheduler`, `fixed_arb` or `headdrop_drop` in Step 4 and repeat Step 5~8 to get the 3 modules' reports.
