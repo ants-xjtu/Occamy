@@ -1,20 +1,20 @@
-# Motivation experiments based on HUAWEI switch 
+# Motivation experiments based on Huawei switch
 
-## testbed configuration 
+## Testbed configuration
 
 - A switch that supports ecn mark, dt buffer management, and adjusts dt's alpha.
 
 - 8 hosts with 40GbE NICs.
 
-## experiment configuration 
+## Experiment configuration
 
 - The switch has 2MB fully shared buffer, dynamically allocated to eight 40Gbps ports via DT. 
 
-- The switch supports 8 class-of-service queues, with one designated as a high-priority queue, while the remaining queues are low-priority. 
+- The switch supports 8 class-of-service queues, with one designated as a high-priority queue, while the remaining queues are low-priority.
 
 - We employ DCTCP as the congestion control algorithm, with the ECN threshold set to 300kB. 
 
-### buffer chocing (Figure 5(a))
+### Buffer choking (Figure 5(a))
 
 - We generate two types of traffic, which are from different senders to the same receiver: 
 
@@ -30,16 +30,16 @@
 
   - For low-priority queues, we set α = 1. In this way, the incast traffic deserves 1MB buffer either with or without low-priority traffic, and ideally the QCT performance should be unaffected by low-priority traffic.
 
-### performance isolation (Figure 5(b))
+### Performance isolation (Figure 5(b))
 
-- we use the same experimental settings as before, except that two types of traffic are congested at different ports, thereby eliminating the impact of buffer choking.
+- We use the same experimental settings as before, except that two types of traffic are congested at different ports, thereby eliminating the impact of buffer choking.
 
 
 ## Our configuration
 
-- We build a testbed comprising 4 hosts connected to a Huawei CE6865 switch. 
+- We build a testbed comprising 4 hosts connected to a Huawei CE6865 switch.
 
-- Each host is equipped with an Intel XL710 Dual Port 40GbE NIC. 
+- Each host is equipped with an Intel XL710 Dual Port 40GbE NIC.
 
 - Using network namespaces, we isolated two ports on each NIC to emulate two separate NICs and hosts.
 
@@ -50,61 +50,59 @@
 - Using [iperf3](https://github.com/esnet/iperf.git) to generate background traffic.
 
 
-## Reproduce Figure 5.
+## Reproduce Figure 5
 
-### 1. configure the experiment
+### Set up configuration file
 
-```sh 
+```bash
 cd motivation
 mv config.conf.example config.conf
 # change the config.conf file.
 ```
 
-### 2. configure the HUAWEI switch using the [switch-instructions](switch-instructions.md).
+### Configure the Huawei switch following [switch-instructions](switch-instructions.md)
 
-a. Turn on the ecn flag. 
+- Turn on ECN
+- Enable multiple queues, and distinguish each queue based on the DSCP value
+- Set the alpha of queue 0 to 8 and the alpha of other queues to 1
 
-b. Enable multiple queues, and distinguish each queue based on the dscp value. 
-
-c. Set the alpha of queue 0 to 8 and the alpha of other queues to 1.
-
-### 3. run the scripts.
+### Run the scripts
 
 a. **The buffer chocking experiment**
 
-```sh
+```bash
 cd buffer-chocking
-sudo su 
-./run.sh 
+sudo su
+./run.sh
 ```
 
 b. **The performance isolation experiment**
 
-```sh
+```bash
 cd buffer-chocking
-sudo su 
-./run.sh 
+sudo su
+./run.sh
 ```
 
-c. **The experiment with no background(for comparison)**
-```sh
+c. **The experiment without background traffic (for comparison)**
+```bash
 cd buffer-chocking
-sudo su 
-./run.sh 
+sudo su
+./run.sh
 ```
 
-### 4. plot the result
+### Draw the figures
 
 ```sh
 cd buffer-chocking
 python3 get_result.py
 ```
 
-The Figure 5(a) is `buffer-chocking/figure/query.png`.
+The Figure 5(a) corresponds to `buffer-chocking/figure/query.png`.
 
-```sh
+```bash
 cd performance_isolation
 python3 get_result.py
 ```
 
-The Figure 5(b) is `performance_isolation/figure/query.png`.
+The Figure 5(b) corresponds to `performance_isolation/figure/query.png`.

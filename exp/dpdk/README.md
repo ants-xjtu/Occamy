@@ -32,9 +32,9 @@ We provide detailed parameters and scripts to implement this experiment.
 
 We use [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) to generate 2 kinds of traffic.
 
-- query traffic.
+- Query traffic.
 
-- background traffic.
+- Background traffic.
 
 ---
 
@@ -134,92 +134,83 @@ exp_init_cwnd=83
 
 3. The host with dpdk swtich can SSH login to 8 hosts as the root user.
 
-## Reproduce Figure 12.
+## Reproduce Figure 12
 
-### run the scripts
-```sh
-cd absorb_bursts; 
-sudo su; 
+### Run the scripts
+```bash
+cd absorb_bursts
+sudo su
 ./run.sh
 ```
 
-### plot 
+### Draw the figure
 
-```sh
+```bash
 mkdir -p figure
 python3 get_result.py
 ```
 
-The figure will appear under `figure/`
+The figures will appear under `figure/`
 
-Figure 12(a)(b) is in `figure/query.png`
-
-Figure 12(c) is `figure/background.png`
-
-Figure 12(d) is `figure/background_small.png`
+- Figure 12(a)(b): `figure/query.png`
+- Figure 12(c): `figure/background.png`
+- Figure 12(d): `figure/background_small.png`
 
 
-## Reproduce Figure 13.
+## Reproduce Figure 13
 
-### run the scripts
-```sh
-cd performance_isolation; 
-sudo su; 
+### Run the scripts
+```bash
+cd performance_isolation
+sudo su
 ./run.sh
 ```
 
-### plot 
+### Draw the figure
 
-```sh
+```bash
 mkdir -p figure
 python3 get_result.py
 ```
-the figure will appear under `figure/`
-
-Figure 13(a)(b) is in `figure/query.png`
-
+The figures will appear under `figure/`
+- Figure 13(a)(b): `figure/query.png`
 
 
-## Reproduce Figure 14.
 
-### run the scripts
-```sh
-cd buffer_chocking; 
-sudo su; 
+## Reproduce Figure 14
+
+### Run the scripts
+```bash
+cd buffer_chocking
+sudo su
 ./run.sh
 ```
 
-### plot 
+### Draw the figure
 
-```sh
+```bash
 mkdir -p figure
 python3 get_result.py
 ```
-the figure will appear under `figure/`
+The figures will appear under `figure/`
+- Figure 14(a)(b): `figure/query.png`
 
-Figure 14(a)(b) is in `figure/query.png`
 
+## Reproduce Figure 15
 
-## Reproduce Figure 15.
-
-### run the scripts
-```sh
-cd alpha; 
-sudo su; 
+### Run the scripts
+```bash
+cd alpha
+sudo su
 ./run.sh
 ```
 
-### plot 
+### Draw the figure
 
-```sh
+```bash
 mkdir -p figure
 python3 get_result.py
 ```
-the figure will appear under `figure/`
-
-Figure 15(a) is `figure/query_dt.png`
-
-Figure 15(b) is `figure/query_occamy.png`
-
-
-
+The figures will appear under `figure/`
+- Figure 15(a): `figure/query_dt.png`
+- Figure 15(b): `figure/query_occamy.png`

@@ -22,9 +22,9 @@ This directory automates the synthesis of Verilog designs using Synopsys Design 
 1. **Configure paths**: Write a `config.conf` file based on `config.conf.example`.
 
 2. **Run the script**: Execute the `run.sh` script, providing the top-level module name as an argument:
-   
+ 
    ```bash
-   ./run.sh headdrop_scheduler 
+   ./run.sh headdrop_scheduler
    ./run.sh fixed_arb
    ./run.sh headdrop_drop
    ```
@@ -34,7 +34,7 @@ This directory automates the synthesis of Verilog designs using Synopsys Design 
 - **Area Report**: Generated as `area_report_<TOP_MODULE>.txt`
 
 
-### FPGA Cost 
+### FPGA Cost
 
 In Vivado2024, set the FPGA card to [U50](https://www.amd.com/en/products/accelerators/alveo/u50/a-u50-p00g-pq-g.html), run `implementation`.
 
