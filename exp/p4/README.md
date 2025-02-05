@@ -19,7 +19,6 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 
 ## Aritfact Evaluation README
 
-<<<<<<< HEAD
 ### Prerequisites
 
 - Edgecore Wedge100BF-32X switch
@@ -42,8 +41,6 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
     - Ubuntu 24.04.1 LTS
     - Scapy
 
-=======
->>>>>>> upstream/eurosys25-artifacts
 ### Environment Setup
 
 - An Edgecore Wedge100BF-32X switch (with Tofino programmable switch ASIC).
@@ -85,11 +82,7 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 - In sender, start sending long-lived traffic to receiver 2 in `pktgen`.
 
 
-<<<<<<< HEAD
-### Reproduce Figure 22
-=======
 ### Reproduce Figure 10
->>>>>>> upstream/eurosys25-artifacts
 
 #### Procedure
 
@@ -102,48 +95,28 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
     - Use `./plot.py <pcap_file_basename>` to draw the queue length plot (with a graphic desktop).
     - 1 cell can contain 80 bytes.
 
-<<<<<<< HEAD
-#### Figure 22 (a)
-=======
 #### Figure 10 (a)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 1`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
-<<<<<<< HEAD
-#### Figure 22 (b)
-=======
 #### Figure 10 (b)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 4`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
-<<<<<<< HEAD
-#### Figure 22 (c)
-=======
 #### Figure 10 (c)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 1 --dt`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
-<<<<<<< HEAD
-#### Figure 22 (d)
-=======
 #### Figure 10 (d)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 1 --dt`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
 
-<<<<<<< HEAD
-### Reproduce Figure 23
-=======
 ### Reproduce Figure 11
->>>>>>> upstream/eurosys25-artifacts
 
 #### Procedure
 
@@ -154,33 +127,21 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
         - lost_rate = (sent_packet_number - reached_packet_number) / sent_packet_number
     - Draw the plot.
 
-<<<<<<< HEAD
-#### Figure 23 (b)
-=======
 #### Figure 11 (b)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 1`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
 - Run the switch with `./run.py 1 --dt`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
-<<<<<<< HEAD
-#### Figure 23 (c)
-=======
 #### Figure 11 (c)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 2`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
 - Run the switch with `./run.py 2 --dt`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
-<<<<<<< HEAD
-#### Figure 23 (d)
-=======
 #### Figure 11 (d)
->>>>>>> upstream/eurosys25-artifacts
 
 - Run the switch with `./run.py 4`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
@@ -188,12 +149,6 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
 
-<<<<<<< HEAD
-### Reproduce Table 2
-
-After making the switch (e.g. `./make.py 4`), you can see the data in the directory of the SDE. (`bf-sde-<version>/p4studio/occamy/tofino/pipe/logs`)
-=======
 <!-- ### Reproduce Table 2 -->
 <!---->
 <!-- After making the switch (e.g. `./make.py 4`), you can see the data in the directory of the SDE. (`bf-sde-<version>/p4studio/occamy/tofino/pipe/logs`) -->
->>>>>>> upstream/eurosys25-artifacts
