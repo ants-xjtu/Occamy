@@ -39,7 +39,7 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 - Receiver 2
     - 10GbE NIC
     - Ubuntu 24.04.1 LTS
-    - Scapy
+    - [Scapy](https://scapy.net/)
 
 ### Environment Setup
 
