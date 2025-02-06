@@ -128,11 +128,57 @@ exp_init_cwnd=83
 
 ## Requirements
 
-1. A host with dpdk-switch, how to run dpdk-switch is explained in detail in this [document](../../src/dpdk/README.md).
+1. A host with this repository, this repository contains dpdk switch and scripts for running experiments. 
+
+> how to run dpdk-switch is explained in detail in this [documentation](../../src/dpdk/README.md).
+
+```bash
+git clone https://github.com/ants-xjtu/Occamy.git
+```
+
+- The dpdk switch need some special configuration which is explained in the [documentation](../../src/dpdk/README.md).
+
+- The dpdk-switch is in `Occamy/src/dpdk/`.
+
+- Dpdk-switch and subsequent experimental scripts run on the same machine.
+
+- Dpdk-switch will be automatically run in the subsequent `run.sh` script.
 
 2. 8 hosts witch [TrafficGenerator](https://github.com/Hijack8/TrafficGenerator.git) in the same path.
 
+```bash
+# in each host's home directory
+git clone https://github.com/Hijack8/TrafficGenerator.git
+```
+
 3. The host with dpdk swtich can SSH login to 8 hosts as the root user.
+
+
+4. Change the config file in `Occamy/src/dpdk/mac.txt` for dpdk-switch.
+
+The `mac.txt` file contains the mac addresses of the 8 hosts' NIC ports connected to the switch, which facilitates the establishment of a static routing table.
+
+5. Change the config file in `Occamy/exp/dpdk/general/config.conf` for experimental scripts.
+
+The `config.conf`:
+```bash
+# 8 hosts' control ip for ssh connect : ssh root@IP
+SERVER_LIST=( "192.168.1.2" "192.168.1.3" "192.168.1.4" "192.168.1.5" "192.168.1.6" "192.168.1.7" "192.168.1.8" "192.168.1.9")
+# local ip 
+SWITCH_IP=( 127.0.0.1)
+# dpdk switch path 
+dpdk_switch_path="/path/to/dpdk-switch/"
+# 8 hosts' same TrafficGenerator path. if it is in your home directory, it will be /home/username/TrafficGenerator/ 
+traffic_path="/path/to/TrafficGenerator/" #example: "/home/xxx/TrafficGenerator/"
+# 8 hosts' nic port IP connected to the swtich. 
+SERVER_EXP_IPS=( "192.168.10.2" "192.168.10.3" "192.168.10.4" "192.168.10.5" "192.168.10.6" "192.168.10.7" "192.168.10.8" "192.168.10.9")
+# MAC addresses of all SERVER_EXP_IPS
+SERVER_MACS=( "00:00:00:00:00:00" "00:00:00:00:00:01" "00:00:00:00:00:02" "00:00:00:00:00:03" "00:00:00:00:00:04" "00:00:00:00:00:05" "00:00:00:00:00:06" "00:00:00:00:00:07")
+# NIC names of all SERVER_EXP_IPS
+SERVER_NICS=( "enp4s0f0" "enp4s0f0" "enp4s0f0" "enp4s0f0" "enp4s0f0" "enp4s0f0" "enp4s0f0" "enp4s0f0")
+# one of the SERVER_LIST 
+ONE_CLIENT_IP="192.168.1.2"
+```
 
 ## Reproduce Figure 12
 
