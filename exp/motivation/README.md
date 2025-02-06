@@ -51,6 +51,23 @@
 
 - Using [iperf3](https://github.com/esnet/iperf.git) to generate background traffic.
 
+- We use a single host to control the other four hosts by ssh for streaming operations.
+
+## Requirements
+
+- Install TrafficGenerator iperf3 for 4 hosts.
+
+```bash
+apt install iperf3 
+git clone https://github.com/Hijack8/TrafficGenerator.git
+cd TrafficGenerator
+make 
+```
+- Configure this repository on a separate host which can control other 4 hosts in root user by ssh.
+
+```bash
+git clone https://github.com/ants-xjtu/Occamy.git
+```
 
 ## Reproduce Figure 5
 
