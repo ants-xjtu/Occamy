@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-source config.conf
+source ../general/config.conf
 
 query_sizes=(1 2 3 4 5 6 7 8 9 10 11 12 13 14)
 base_query_size="1M"
@@ -117,11 +117,11 @@ run-incast-server() {
   ssh root@${ONE_CLIENT_IP} "pkill 'server'"
 
   sleep 5
-  ssh root@192.168.1.3 "ip netns exec ns2 /home/ygli/TrafficGenerator/bin/server -C DCTCP -p 6001 -d"
-  ssh root@192.168.1.3 "ip netns exec ns1 /home/ygli/TrafficGenerator/bin/server -C DCTCP -p 6001 -d"
-  ssh root@192.168.1.4 "ip netns exec ns2 /home/ygli/TrafficGenerator/bin/server -C DCTCP -p 6001 -d"
-  ssh root@192.168.1.5 "ip netns exec ns1 /home/ygli/TrafficGenerator/bin/server -C DCTCP -p 6001 -d"
-  ssh root@192.168.1.5 "ip netns exec ns2 /home/ygli/TrafficGenerator/bin/server -C DCTCP -p 6001 -d"
+  ssh root@192.168.1.3 "ip netns exec ns2 ${traffic_path}bin/server -C DCTCP -p 6001 -d"
+  ssh root@192.168.1.3 "ip netns exec ns1 ${traffic_path}bin/server -C DCTCP -p 6001 -d"
+  ssh root@192.168.1.4 "ip netns exec ns2 ${traffic_path}bin/server -C DCTCP -p 6001 -d"
+  ssh root@192.168.1.5 "ip netns exec ns1 ${traffic_path}bin/server -C DCTCP -p 6001 -d"
+  ssh root@192.168.1.5 "ip netns exec ns2 ${traffic_path}bin/server -C DCTCP -p 6001 -d"
 
 }
 
@@ -144,7 +144,7 @@ set-init-cwnd() {
 
 run-incast() {
   mkdir -p result
-  ssh root@${ONE_CLIENT_IP} "ip netns exec ns1 /home/ygli/TrafficGenerator/bin/incast-client -b 1000 -C DCTCP -c /home/ygli/TrafficGenerator/conf/incast_client_config.txt -l ${traffic_path}result/query-result-$query_size.txt -s 123 -t 60"
+  ssh root@${ONE_CLIENT_IP} "ip netns exec ns1 ${traffic_path}bin/incast-client -b 1000 -C DCTCP -c ${traffic_path}conf/incast_client_config.txt -l ${traffic_path}result/query-result-$query_size.txt -s 123 -t 60"
 }
 
 download-result() {
