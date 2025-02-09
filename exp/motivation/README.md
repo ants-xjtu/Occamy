@@ -160,6 +160,12 @@ qos drr 1 to 7
 
 ### Run the scripts
 
+Configure the namespace of each host.
+
+```sh 
+./set-ns.sh
+```
+
 a. **The buffer chocking experiment**
 
 ```bash
