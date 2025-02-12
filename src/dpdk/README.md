@@ -16,13 +16,33 @@ This is a l2 switch based on DPDK.
 
 # Requirements
 
+* OS: Ubuntu22.04
+
+* Hardware: 
+
+  - 256G memory 
+  - 32 cores or more.
+  - 2x 4-port Intel X710 10GBE NIC.
+
 * [DPDK](http://dpdk.org/) == 23.07
 
 # Settings
 
 * Boot settings: `crashkernel=auto rhgb quiet default_hugepagesz=1G hugepagesz=1G hugepages=8 isolcpus=0,2,4,6,8,10,12,14,16,18,20,22 intel_iommu=on iommu=pt`
 
-* DPDK Settings: 32 pages of 1Gb, 64Gb in total
+* hugepages settings: 32 pages of 1Gb, 64Gb in total
+
+```bash
+cd dpdk-23.07/usertools/
+sudo ./dpdk-hugepages.py -p 1G --setup 32G
+```
+
+* Bind the NIC ports.
+```bash 
+cd dpdk-23.07/usertools/
+# bind all the 8 nic ports.(X710)
+sudo ./dpdk-devbind.py -b vfio-pci xxx
+```
 
 # How to Run it
 
