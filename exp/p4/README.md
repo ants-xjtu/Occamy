@@ -33,13 +33,13 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 - Receiver 1
     - 10GbE NIC
     - Ubuntu 24.04.1 LTS
-    - DPDK 25.03.0-rc0
-    - pktgen-dpdk 24.10.3
+    - [Scapy](https://scapy.net/)
 
 - Receiver 2
     - 10GbE NIC
     - Ubuntu 24.04.1 LTS
-    - [Scapy](https://scapy.net/)
+    - DPDK 25.03.0-rc0
+    - pktgen-dpdk 24.10.3
 
 ### Environment Setup
 
@@ -53,10 +53,10 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
         - Find out the port number of the links. You can find infomation in Section 12 of [this document](https://github.com/barefootnetworks/Open-Tofino/blob/master/PUBLIC_Tofino-Native-Arch.pdf) by Intel.
         - (Optional) We recommend you to use ports from the same pipeline for possibly stability.
         - Run `ucli` then `pm` and `show` the ports in the console of `bf_switchd`, to ensure all links are up.
-    - The testing program is `pktgen`, a DPDK application, which deploys on all the servers. Setup according to [the official document](https://pktgen-dpdk.readthedocs.io/en/latest/getting_started.html). Deploy `pktgen` in sender and receiver 1.
+    - The testing program is `pktgen`, a DPDK application, which deploys on all the servers. Setup according to [the official document](https://pktgen-dpdk.readthedocs.io/en/latest/getting_started.html). Deploy `pktgen` in sender and receiver 2.
         - Before building `pktgen`, edit `pktgen-dpdk/app/pktgen-capture.c` and modify to `#define CAPTURE_BUFF_SIZE (1024 * (1024 * 1024))` instead of 4M.
-    - Install `scapy` in receiver 2.
-    - We set the sender's ip as `192.168.3.11` and `192.168.3.12`, while the receiver 1's ip as `192.168.3.21` and the receiver 2's ip as `192.168.3.22`. `192.168.3.11` send bursty traffic to receiver 1, while `192.168.3.12` send long-lived traffic to receiver 2.
+    - Install `scapy` in receiver 1.
+    - We set the sender's ip as `192.168.3.11` and `192.168.3.12`, while the receiver 1's ip as `192.168.3.22` and the receiver 2's ip as `192.168.3.21`. `192.168.3.11` send bursty traffic to receiver 2, while `192.168.3.12` send long-lived traffic to receiver 1.
 
 - Edit `init.py`, which specifies the links, the flow table, the definition of all queues and the synchronization action.
     - Modify the `DEV_PORT` numbers of the 2 10G ports and the 2 100G ports used in last step.
@@ -69,17 +69,17 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 ### Run the Experiments
 
 - In the switch, enter `Occamy/exp/p4/`.
-    - To run the switch, use `run.py`:
-        - `./run.py <alpha> [--dt]`
-        - For example, if we want Fig. 22 (b), which uses Occamy with α = 4, `./run.py 4`; if we want Fig. 22 (c), which uses DT with α = 1, `./run.py 1 --dt`.
-    - Run `init.sh`. Make sure `init.py` modified correctly.
+    - To run the switch, use `run.sh`:
+        - `./run.sh <alpha> [--dt]`
+        - For example, if we want Fig. 22 (b), which uses Occamy with α = 4, `./run.sh 4`; if we want Fig. 22 (c), which uses DT with α = 1, `./run.sh 1 --dt`.
+    - Run `init.sh`. Make sure `init.sh` modified correctly.
         - `bfshell.sh` can be used to config more.
 
-- In receiver 2, enter `Occamy/exp/p4/`.
+- In receiver 1, enter `Occamy/exp/p4/`.
     - Modify the interface in `sendp(packet, iface="enp4s0f1")` to that connecting to the switch.
     - Run `./send_sync_packet.py` to send the initial sync packet. Sync packets would be mirrored to the port we set from now on.
 
-- In sender, start sending long-lived traffic to receiver 2 in `pktgen`.
+- In sender, start sending long-lived traffic to receiver 1 in `pktgen`.
 
 
 ### Reproduce Figure 10
@@ -97,22 +97,22 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 
 #### Figure 10 (a)
 
-- Run the switch with `./run.py 1`.
+- Run the switch with `./run.sh 1`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
 #### Figure 10 (b)
 
-- Run the switch with `./run.py 4`.
+- Run the switch with `./run.sh 4`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
 #### Figure 10 (c)
 
-- Run the switch with `./run.py 1 --dt`.
+- Run the switch with `./run.sh 1 --dt`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
 #### Figure 10 (d)
 
-- Run the switch with `./run.py 1 --dt`.
+- Run the switch with `./run.sh 4 --dt`.
 - Start capture, send burst traffic, and stop capture. Then use the data to draw the plot as above.
 
 
@@ -129,23 +129,23 @@ Scripts to perform the P4 experiments, which show the ability of absorbing traff
 
 #### Figure 11 (b)
 
-- Run the switch with `./run.py 1`.
+- Run the switch with `./run.sh 1`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
-- Run the switch with `./run.py 1 --dt`.
+- Run the switch with `./run.sh 1 --dt`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
 #### Figure 11 (c)
 
-- Run the switch with `./run.py 2`.
+- Run the switch with `./run.sh 2`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
-- Run the switch with `./run.py 2 --dt`.
+- Run the switch with `./run.sh 2 --dt`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
 #### Figure 11 (d)
 
-- Run the switch with `./run.py 4`.
+- Run the switch with `./run.sh 4`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the red line (Occamy).
-- Run the switch with `./run.py 4 --dt`.
+- Run the switch with `./run.sh 4 --dt`.
 - Start testing while changing burst size. Record the statistics and draw the plot. You get the green line (DT).
 
 
