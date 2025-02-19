@@ -74,7 +74,7 @@ git clone https://github.com/ants-xjtu/Occamy.git
 ### Set up configuration file
 
 ```bash
-cd motivation
+cd motivation/general
 mv config.conf.example config.conf
 # change the config.conf file.
 ```
@@ -163,6 +163,7 @@ qos drr 1 to 7
 Configure the namespace of each host.
 
 ```sh 
+sudo su
 ./set-ns.sh
 ```
 
