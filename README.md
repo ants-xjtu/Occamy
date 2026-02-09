@@ -1,4 +1,9 @@
 # Occamy
+
+> **📦 EuroSys'25 Artifact Evaluation:**
+> The artifacts for our EuroSys'25 paper are available on the [eurosys25-artifacts](https://github.com/ants-xjtu/Occamy/tree/eurosys25-artifacts) branch.
+> Please switch to that branch for detailed instructions on reproducing the experimental results.
+
 Occamy is a preemptive buffer management for on-chip shared-memory switches.
 It can quickly vacate the over-allocated buffer with head drop.
 
